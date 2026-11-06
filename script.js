@@ -1,59 +1,57 @@
 /**
  * ==============================================================================
  * JAVASCRIPT INTERACTIVO - 15 AÑOS DE YAISRELIS ISABELLA
- * Lámpara mágica, humo del genio, música, modales y conexión con Google Sheets
+ * Lámpara mágica, humo del genio, música, modales y confirmación por WhatsApp
  * ==============================================================================
  */
 
-// 1. LISTA LOCAL DE INVITADOS (RESPALDO INMEDIATO DE LA HOJA DE GOOGLE SHEETS)
-// Hoja: https://docs.google.com/spreadsheets/d/1d3uSHlVQtv1E1HeQTXANpKzpuDNG13Qb6c7rRu8lYZE/edit
-let guestsDatabase = [
-  { nro: 1, titular: "Tulio Parra", acompanantes: "Francisco Parra, Génesis Parra, Luigi", pases: 4, familia: "Familia Parra", estado: "Pendiente" },
-  { nro: 2, titular: "Yaisnorys Hernández", acompanantes: "Ivonne Hernández", pases: 2, familia: "Familia Hernández", estado: "Pendiente" },
-  { nro: 3, titular: "Yaisibell Parra", acompanantes: "-", pases: 1, familia: "Familia Parra", estado: "Pendiente" },
-  { nro: 4, titular: "Henry Torres", acompanantes: "-", pases: 1, familia: "Familia Torres", estado: "Pendiente" },
-  { nro: 5, titular: "Maryoris Soto", acompanantes: "Angel, Arelis", pases: 3, familia: "Familia Soto", estado: "Pendiente" },
-  { nro: 6, titular: "Herimar Torres", acompanantes: "Victor", pases: 2, familia: "Familia Torres", estado: "Pendiente" },
-  { nro: 7, titular: "Elianny Torres", acompanantes: "-", pases: 1, familia: "Familia Torres", estado: "Pendiente" },
-  { nro: 8, titular: "Herianny Torres", acompanantes: "-", pases: 1, familia: "Familia Torres", estado: "Pendiente" },
-  { nro: 9, titular: "Angel Melan", acompanantes: "-", pases: 1, familia: "", estado: "Pendiente" },
-  { nro: 10, titular: "Nelly Márquez", acompanantes: "-", pases: 1, familia: "Familia Márquez", estado: "Pendiente" },
-  { nro: 11, titular: "Neivy Melean", acompanantes: "-", pases: 1, familia: "", estado: "Pendiente" },
-  { nro: 12, titular: "Victoria López", acompanantes: "-", pases: 1, familia: "", estado: "Pendiente" },
-  { nro: 13, titular: "Jesús Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez", estado: "Pendiente" },
-  { nro: 14, titular: "Germán Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez", estado: "Pendiente" },
-  { nro: 15, titular: "Lesmi Higuera", acompanantes: "-", pases: 1, familia: "", estado: "Pendiente" },
-  { nro: 17, titular: "Carlitos Martes", acompanantes: "-", pases: 1, familia: "Familia Martes", estado: "Pendiente" },
-  { nro: 19, titular: "Vicner Martes", acompanantes: "-", pases: 1, familia: "Familia Martes", estado: "Pendiente" },
-  { nro: 20, titular: "Heidy Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández", estado: "Pendiente" },
-  { nro: 21, titular: "Milagro Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández", estado: "Pendiente" },
-  { nro: 22, titular: "Lily González", acompanantes: "-", pases: 1, familia: "Familia González", estado: "Pendiente" },
-  { nro: 23, titular: "Francis", acompanantes: "Oscar", pases: 2, familia: "", estado: "Pendiente" },
-  { nro: 24, titular: "Francheska", acompanantes: "-", pases: 1, familia: "", estado: "Pendiente" },
-  { nro: 25, titular: "Daily González", acompanantes: "Leandro", pases: 2, familia: "Familia González", estado: "Pendiente" },
-  { nro: 26, titular: "Dani González", acompanantes: "-", pases: 1, familia: "Familia González", estado: "Pendiente" },
-  { nro: 27, titular: "Manuel Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez", estado: "Pendiente" },
-  { nro: 28, titular: "Iriam Rodríguez", acompanantes: "-", pases: 1, familia: "Familia Rodríguez", estado: "Pendiente" },
-  { nro: 29, titular: "Irlenis Rojas", acompanantes: "-", pases: 1, familia: "Familia Rojas", estado: "Pendiente" },
-  { nro: 30, titular: "Carmen Calixtro", acompanantes: "Merce Rojas", pases: 2, familia: "Familia Rojas / Calixtro", estado: "Pendiente" },
-  { nro: 31, titular: "Mery Rojas", acompanantes: "Exnnery Vázquez", pases: 2, familia: "Familia Rojas / Vázquez", estado: "Pendiente" },
-  { nro: 32, titular: "Manuel Polo", acompanantes: "Yuliany", pases: 2, familia: "Familia Polo", estado: "Pendiente" },
-  { nro: 33, titular: "Eduardo Pineda", acompanantes: "-", pases: 1, familia: "Familia Pineda", estado: "Pendiente" },
-  { nro: 34, titular: "Edelmira Caicedo", acompanantes: "Camila, Luisana", pases: 3, familia: "Familia Caicedo", estado: "Pendiente" },
-  { nro: 35, titular: "Sove Navarro", acompanantes: "-", pases: 1, familia: "Familia Navarro", estado: "Pendiente" },
-  { nro: 37, titular: "Escarlet Andrade", acompanantes: "-", pases: 1, familia: "Familia Andrade", estado: "Pendiente" },
-  { nro: 38, titular: "Eiberth Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández", estado: "Pendiente" },
-  { nro: 39, titular: "Jonesca Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández", estado: "Pendiente" },
-  { nro: 40, titular: "Marco Rojas", acompanantes: "-", pases: 1, familia: "Familia Rojas", estado: "Pendiente" },
-  { nro: 41, titular: "Yadira", acompanantes: "-", pases: 1, familia: "", estado: "Pendiente" },
-  { nro: 42, titular: "Jean Carlos Villasmil", acompanantes: "María Soto", pases: 2, familia: "Familia Villasmil / Soto", estado: "Pendiente" },
-  { nro: 44, titular: "Familia Bastidas", acompanantes: "-", pases: 1, familia: "Familia Bastidas", estado: "Pendiente" },
-  { nro: 45, titular: "Señor Jeffrey", acompanantes: "Yajari, Ale", pases: 3, familia: "", estado: "Pendiente" }
-];
+// Teléfono oficial de confirmaciones por WhatsApp
+const WHATSAPP_PHONE = "584246159401";
 
-// URL de Google Apps Script guardada en localStorage o configurable
-const STORAGE_KEY_SCRIPT_URL = "yaisrelis_15_apps_script_url";
-let appsScriptUrl = localStorage.getItem(STORAGE_KEY_SCRIPT_URL) || "";
+// 1. LISTA DE INVITADOS PARA AUTOCOMPLETADO
+const guestsDatabase = [
+  { nro: 1, titular: "Tulio Parra", acompanantes: "Francisco Parra, Génesis Parra, Luigi", pases: 4, familia: "Familia Parra" },
+  { nro: 2, titular: "Yaisnorys Hernández", acompanantes: "Ivonne Hernández", pases: 2, familia: "Familia Hernández" },
+  { nro: 3, titular: "Yaisibell Parra", acompanantes: "-", pases: 1, familia: "Familia Parra" },
+  { nro: 4, titular: "Henry Torres", acompanantes: "-", pases: 1, familia: "Familia Torres" },
+  { nro: 5, titular: "Maryoris Soto", acompanantes: "Angel, Arelis", pases: 3, familia: "Familia Soto" },
+  { nro: 6, titular: "Herimar Torres", acompanantes: "Victor", pases: 2, familia: "Familia Torres" },
+  { nro: 7, titular: "Elianny Torres", acompanantes: "-", pases: 1, familia: "Familia Torres" },
+  { nro: 8, titular: "Herianny Torres", acompanantes: "-", pases: 1, familia: "Familia Torres" },
+  { nro: 9, titular: "Angel Melan", acompanantes: "-", pases: 1, familia: "" },
+  { nro: 10, titular: "Nelly Márquez", acompanantes: "-", pases: 1, familia: "Familia Márquez" },
+  { nro: 11, titular: "Neivy Melean", acompanantes: "-", pases: 1, familia: "" },
+  { nro: 12, titular: "Victoria López", acompanantes: "-", pases: 1, familia: "" },
+  { nro: 13, titular: "Jesús Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez" },
+  { nro: 14, titular: "Germán Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez" },
+  { nro: 15, titular: "Lesmi Higuera", acompanantes: "-", pases: 1, familia: "" },
+  { nro: 17, titular: "Carlitos Martes", acompanantes: "-", pases: 1, familia: "Familia Martes" },
+  { nro: 19, titular: "Vicner Martes", acompanantes: "-", pases: 1, familia: "Familia Martes" },
+  { nro: 20, titular: "Heidy Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández" },
+  { nro: 21, titular: "Milagro Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández" },
+  { nro: 22, titular: "Lily González", acompanantes: "-", pases: 1, familia: "Familia González" },
+  { nro: 23, titular: "Francis", acompanantes: "Oscar", pases: 2, familia: "" },
+  { nro: 24, titular: "Francheska", acompanantes: "-", pases: 1, familia: "" },
+  { nro: 25, titular: "Daily González", acompanantes: "Leandro", pases: 2, familia: "Familia González" },
+  { nro: 26, titular: "Dani González", acompanantes: "-", pases: 1, familia: "Familia González" },
+  { nro: 27, titular: "Manuel Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez" },
+  { nro: 28, titular: "Iriam Rodríguez", acompanantes: "-", pases: 1, familia: "Familia Rodríguez" },
+  { nro: 29, titular: "Irlenis Rojas", acompanantes: "-", pases: 1, familia: "Familia Rojas" },
+  { nro: 30, titular: "Carmen Calixtro", acompanantes: "Merce Rojas", pases: 2, familia: "Familia Rojas / Calixtro" },
+  { nro: 31, titular: "Mery Rojas", acompanantes: "Exnnery Vázquez", pases: 2, familia: "Familia Rojas / Vázquez" },
+  { nro: 32, titular: "Manuel Polo", acompanantes: "Yuliany", pases: 2, familia: "Familia Polo" },
+  { nro: 33, titular: "Eduardo Pineda", acompanantes: "-", pases: 1, familia: "Familia Pineda" },
+  { nro: 34, titular: "Edelmira Caicedo", acompanantes: "Camila, Luisana", pases: 3, familia: "Familia Caicedo" },
+  { nro: 35, titular: "Sove Navarro", acompanantes: "-", pases: 1, familia: "Familia Navarro" },
+  { nro: 37, titular: "Escarlet Andrade", acompanantes: "-", pases: 1, familia: "Familia Andrade" },
+  { nro: 38, titular: "Eiberth Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández" },
+  { nro: 39, titular: "Jonesca Hernández", acompanantes: "-", pases: 1, familia: "Familia Hernández" },
+  { nro: 40, titular: "Marco Rojas", acompanantes: "-", pases: 1, familia: "Familia Rojas" },
+  { nro: 41, titular: "Yadira", acompanantes: "-", pases: 1, familia: "" },
+  { nro: 42, titular: "Jean Carlos Villasmil", acompanantes: "María Soto", pases: 2, familia: "Familia Villasmil / Soto" },
+  { nro: 44, titular: "Familia Bastidas", acompanantes: "-", pases: 1, familia: "Familia Bastidas" },
+  { nro: 45, titular: "Señor Jeffrey", acompanantes: "Yajari, Ale", pases: 3, familia: "" }
+];
 
 // ==============================================================================
 // 2. SISTEMA DE AUDIO (Música de fondo y efectos mágicos)
@@ -95,9 +93,7 @@ function playMagicChime(freq = 600) {
 
     osc.start();
     osc.stop(audioCtx.currentTime + 0.3);
-  } catch (e) {
-    // Silencioso si no está disponible
-  }
+  } catch (e) {}
 }
 
 function playMagicBurstSound() {
@@ -106,7 +102,7 @@ function playMagicBurstSound() {
     if (!audioCtx) return;
     if (audioCtx.state === 'suspended') audioCtx.resume();
 
-    const chords = [523.25, 659.25, 783.99, 1046.50]; // Acorde C mayor brillante
+    const chords = [523.25, 659.25, 783.99, 1046.50];
     chords.forEach((note, i) => {
       setTimeout(() => {
         playMagicChime(note);
@@ -123,7 +119,6 @@ function startMusic() {
     musicBtn.classList.add("playing");
     musicIcon.className = "fa-solid fa-volume-high";
   }).catch(() => {
-    // Autoplay prevenido por navegador hasta interacción del usuario
     isAudioPlaying = false;
     musicBtn.classList.remove("playing");
     musicIcon.className = "fa-solid fa-volume-xmark";
@@ -145,7 +140,9 @@ function toggleMusic() {
   }
 }
 
-musicBtn.addEventListener("click", toggleMusic);
+if (musicBtn) {
+  musicBtn.addEventListener("click", toggleMusic);
+}
 
 // ==============================================================================
 // 3. CANVAS DE ESTRELLAS DE LA NOCHE DE ARABIA
@@ -248,7 +245,7 @@ class SmokeParticle {
   update() {
     this.x += this.vx;
     this.y += this.vy;
-    this.vy -= 0.08; // Flotación hacia arriba como humo
+    this.vy -= 0.08;
     this.size *= 1.015;
     this.life++;
   }
@@ -294,42 +291,35 @@ function onRubMove(clientX, clientY) {
   if (lampUnlocked) return;
   const rect = lampBox.getBoundingClientRect();
   const relX = clientX - rect.left;
-  const relY = clientY - rect.top;
 
   if (lastX !== 0 && lastY !== 0) {
     const dist = Math.hypot(clientX - lastX, clientY - lastY);
     if (dist > 8) {
-      // Incrementar progreso
       rubProgress = Math.min(100, rubProgress + dist * 0.45);
       rubFill.style.width = `${rubProgress}%`;
       rubText.textContent = `Poder del Genio: ${Math.round(rubProgress)}%`;
 
-      // Efecto de inclinación ligera de la lámpara
       const tilt = ((relX / rect.width) - 0.5) * 15;
       magicLamp.style.transform = `scale(1.05) rotate(${tilt}deg)`;
 
-      // Generar humo desde la boquilla de la lámpara (lado izquierdo)
-      const spoutX = smokeCanvas.width * 0.22;
+      // La boquilla está en el lado DERECHO (igual que en la foto del usuario)
+      const spoutX = smokeCanvas.width * 0.78;
       const spoutY = smokeCanvas.height * 0.45;
       addSmokePuff(spoutX, spoutY, 2);
 
-      // Sonido de chispas
       if (Math.random() > 0.6) {
         playMagicChime(450 + Math.random() * 400);
       }
 
-      // Vibración háptica en móviles si está disponible
       if (navigator.vibrate && Math.random() > 0.7) {
         navigator.vibrate(15);
       }
 
-      // Brillo del aura
       lampAura.style.transform = `scale(${1 + rubProgress / 60})`;
       lampAura.style.opacity = `${0.3 + rubProgress / 140}`;
 
       if (rubGuide) rubGuide.style.display = "none";
 
-      // Al completar 100%, desbloquear invitación
       if (rubProgress >= 100) {
         unlockInvitation();
       }
@@ -374,12 +364,13 @@ if (lampBox) {
   window.addEventListener("touchend", handlePointerUp);
 }
 
-skipRubBtn.addEventListener("click", () => {
-  initAudioContext();
-  unlockInvitation();
-});
+if (skipRubBtn) {
+  skipRubBtn.addEventListener("click", () => {
+    initAudioContext();
+    unlockInvitation();
+  });
+}
 
-// Desbloqueo y Transición Mágica
 function unlockInvitation() {
   if (lampUnlocked) return;
   lampUnlocked = true;
@@ -387,16 +378,14 @@ function unlockInvitation() {
   rubFill.style.width = "100%";
   rubText.textContent = "¡Deseo Concedido!";
 
-  // Gran explosión de humo y chispas
-  const spoutX = smokeCanvas.width * 0.25;
+  // Explosión mágica de humo desde la boquilla derecha
+  const spoutX = smokeCanvas.width * 0.78;
   const spoutY = smokeCanvas.height * 0.45;
   addSmokePuff(spoutX, spoutY, 40, true);
   playMagicBurstSound();
 
-  // Iniciar música de Aladdín
   startMusic();
 
-  // Transición a la Escena de Alfombra Voladora y luego a la Invitación
   setTimeout(() => {
     switchScene("carpet-transition");
 
@@ -460,7 +449,7 @@ if (addToCalendarBtn) {
     const title = encodeURIComponent("15 Años de Yaisrelis Isabella Vázquez Hernández");
     const details = encodeURIComponent("¡Noche mágica de 15 Años! Celebración en Los Bohíos de Carlos. Recepción a las 9:30 PM. Código de vestimenta: Cóctel para área de piscina.");
     const location = encodeURIComponent("Los Bohíos de Carlos, Avenida 49B con Calle 178, Maracaibo, Zulia");
-    const dates = "20261115T013000Z/20261115T080000Z"; // 9:30 PM VET (UTC-4) = 01:30 UTC siguiente día
+    const dates = "20261115T013000Z/20261115T080000Z";
 
     const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
     window.open(googleCalUrl, "_blank");
@@ -505,35 +494,12 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-// Modal Configuración
-const openConfigBtn = document.getElementById("open-config-btn");
-const modalConfig = document.getElementById("modal-config");
-const scriptUrlInput = document.getElementById("script-url-input");
-const saveConfigBtn = document.getElementById("save-config-btn");
-
-if (openConfigBtn) {
-  openConfigBtn.addEventListener("click", () => {
-    scriptUrlInput.value = appsScriptUrl;
-    modalConfig.classList.add("active");
-  });
-}
-
-if (saveConfigBtn) {
-  saveConfigBtn.addEventListener("click", () => {
-    appsScriptUrl = scriptUrlInput.value.trim();
-    localStorage.setItem(STORAGE_KEY_SCRIPT_URL, appsScriptUrl);
-    alert("¡Enlace de Google Apps Script guardado con éxito!");
-    modalConfig.classList.remove("active");
-  });
-}
-
 // ==============================================================================
-// 7. AUTOCOMPLETADO Y GESTIÓN INTELIGENTE DEL FORMULARIO RSVP
+// 7. AUTOCOMPLETADO Y CONFIRMACIÓN POR WHATSAPP (+58 424-6159401)
 // ==============================================================================
 const rsvpSearch = document.getElementById("rsvp-search");
 const autocompleteList = document.getElementById("autocomplete-list");
 const clearSearchBtn = document.getElementById("clear-search");
-const rsvpNro = document.getElementById("rsvp-nro");
 const rsvpTitular = document.getElementById("rsvp-titular");
 const rsvpAcompanantes = document.getElementById("rsvp-acompanantes");
 const rsvpPases = document.getElementById("rsvp-pases");
@@ -542,11 +508,6 @@ const btnMinusPass = document.getElementById("btn-minus-pass");
 const btnPlusPass = document.getElementById("btn-plus-pass");
 const rsvpForm = document.getElementById("rsvp-form");
 const formFeedback = document.getElementById("form-feedback");
-const submitRsvpBtn = document.getElementById("submit-rsvp-btn");
-const btnSpinner = document.getElementById("btn-spinner");
-const btnIcon = document.getElementById("btn-icon");
-const btnText = document.getElementById("btn-text");
-const rsvpWhatsappBtn = document.getElementById("rsvp-whatsapp-btn");
 
 // Control de pases +/-
 if (btnMinusPass && btnPlusPass) {
@@ -560,7 +521,6 @@ if (btnMinusPass && btnPlusPass) {
   });
 }
 
-// Buscar en la lista de invitados en tiempo real
 function normalizar(txt) {
   return txt.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 }
@@ -620,7 +580,6 @@ if (rsvpSearch) {
 }
 
 function seleccionarInvitado(item) {
-  rsvpNro.value = item.nro || "";
   rsvpTitular.value = item.titular;
   rsvpAcompanantes.value = item.acompanantes !== "-" ? item.acompanantes : "";
   rsvpPases.value = item.pases || 1;
@@ -629,199 +588,56 @@ function seleccionarInvitado(item) {
   playMagicChime(800);
 }
 
-// Ocultar desplegable si hace clic fuera
 document.addEventListener("click", (e) => {
   if (autocompleteList && !autocompleteList.contains(e.target) && e.target !== rsvpSearch) {
     autocompleteList.classList.remove("active");
   }
 });
 
-// Enlace de confirmación directa a WhatsApp
-if (rsvpWhatsappBtn) {
-  rsvpWhatsappBtn.addEventListener("click", () => {
-    const titular = rsvpTitular.value.trim() || "Invitado";
-    const statusRadio = document.querySelector('input[name="attendance_status"]:checked');
-    const estado = statusRadio ? statusRadio.value : "Confirmado";
-    const pases = rsvpPases.value || 1;
-    const acompanantes = rsvpAcompanantes.value.trim();
-    const notas = document.getElementById("rsvp-observaciones").value.trim();
-
-    let text = `¡Hola! Mensaje para los 15 Años de *Yaisrelis Isabella* ✨%0A%0A`;
-    text += `👤 *Titular:* ${encodeURIComponent(titular)}%0A`;
-    text += `🎟️ *Pases:* ${encodeURIComponent(pases)}%0A`;
-    if (acompanantes) {
-      text += `👥 *Acompañantes:* ${encodeURIComponent(acompanantes)}%0A`;
-    }
-    text += `✨ *Estado:* ${estado === 'Confirmado' ? '✅ ¡Sí, asistiré con alegría!' : '❌ Lo siento, no podré asistir'}%0A`;
-    if (notas) {
-      text += `💌 *Mensaje/Notas:* ${encodeURIComponent(notas)}%0A`;
-    }
-
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${text}`;
-    window.open(whatsappUrl, "_blank");
-  });
-}
-
-// Envío del Formulario a Google Sheets
+// Envío Directo a WhatsApp (+58 424-6159401)
 if (rsvpForm) {
-  rsvpForm.addEventListener("submit", async (e) => {
+  rsvpForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const titular = rsvpTitular.value.trim();
     if (!titular) {
-      showFeedback("Por favor ingresa tu nombre.", "error");
+      showFeedback("Por favor escribe tu nombre completo.", "error");
       return;
     }
 
     const statusRadio = document.querySelector('input[name="attendance_status"]:checked');
     const estado = statusRadio ? statusRadio.value : "Confirmado";
-    const pases = parseInt(rsvpPases.value, 10) || 1;
+    const pases = rsvpPases.value || 1;
     const acompanantes = rsvpAcompanantes.value.trim();
-    const telefono = rsvpTelefono.value.trim();
-    const nro = rsvpNro.value;
-    const observaciones = document.getElementById("rsvp-observaciones").value.trim();
+    const telefono = rsvpTelefono ? rsvpTelefono.value.trim() : "";
+    const notas = document.getElementById("rsvp-observaciones").value.trim();
 
-    const payload = {
-      action: "rsvp",
-      nro: nro,
-      titular: titular,
-      acompanantes: acompanantes,
-      pases: pases,
-      telefono: telefono,
-      estado: estado,
-      observaciones: observaciones
-    };
-
-    // Actualizar estado en base de datos local
-    const existing = guestsDatabase.find(g => normalizar(g.titular) === normalizar(titular) || (nro && g.nro == nro));
-    if (existing) {
-      existing.estado = estado;
-      existing.pases = pases;
-      if (telefono) existing.telefono = telefono;
+    let text = `¡Hola! Confirmo mi asistencia para los 15 Años de *Yaisrelis Isabella* ✨\n\n`;
+    text += `👤 *Titular:* ${titular}\n`;
+    text += `🎟️ *Pases:* ${pases}\n`;
+    if (acompanantes) {
+      text += `👥 *Acompañantes:* ${acompanantes}\n`;
+    }
+    if (telefono) {
+      text += `📱 *Contacto:* ${telefono}\n`;
+    }
+    text += `✨ *Estado:* ${estado === 'Confirmado' ? '✅ ¡Sí, asistiré con alegría!' : '❌ Lo siento, no podré asistir'}\n`;
+    if (notas) {
+      text += `💌 *Mensaje/Notas:* ${notas}\n`;
     }
 
-    // Efecto visual de carga
-    setLoading(true);
+    playMagicBurstSound();
+    showFeedback(`¡Gracias ${titular}! Abriendo WhatsApp para enviar tu confirmación...`, "success");
 
-    if (!appsScriptUrl) {
-      // Si aún no han pegado la URL de Apps Script, guardar localmente y guiar
-      setTimeout(() => {
-        setLoading(false);
-        playMagicBurstSound();
-        showFeedback(
-          `¡Tu confirmación (${estado}) ha sido registrada en el sistema! No olvides compartirla también por WhatsApp con el botón de abajo.`,
-          "success"
-        );
-      }, 700);
-      return;
-    }
-
-    try {
-      // Envío a Google Apps Script
-      // Usamos mode: 'no-cors' o POST con json
-      const res = await fetch(appsScriptUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(payload)
-      });
-
-      setLoading(false);
-      playMagicBurstSound();
-      showFeedback(
-        `¡Maravilloso, ${titular}! Tu confirmación (${estado}) se ha guardado exitosamente en la hoja de Google Sheets.`,
-        "success"
-      );
-
-    } catch (err) {
-      console.warn("Fallo fetch a Apps Script, aplicando fallback GET:", err);
-      // Fallback usando URL parameters
-      try {
-        const queryParams = new URLSearchParams(payload).toString();
-        const imgFallback = new Image();
-        imgFallback.src = `${appsScriptUrl}?${queryParams}`;
-
-        setLoading(false);
-        playMagicBurstSound();
-        showFeedback(
-          `¡Respuesta enviada con éxito a Google Sheets para ${titular}!`,
-          "success"
-        );
-      } catch (e2) {
-        setLoading(false);
-        showFeedback(
-          `Guardado localmente. Recuerda confirmar también por WhatsApp con el botón de abajo.`,
-          "success"
-        );
-      }
-    }
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(text)}`;
+    
+    setTimeout(() => {
+      window.open(whatsappUrl, "_blank");
+    }, 600);
   });
-}
-
-function setLoading(isLoading) {
-  if (isLoading) {
-    submitRsvpBtn.disabled = true;
-    btnSpinner.style.display = "inline-block";
-    btnIcon.style.display = "none";
-    btnText.textContent = "Guardando en Google Sheets...";
-  } else {
-    submitRsvpBtn.disabled = false;
-    btnSpinner.style.display = "none";
-    btnIcon.style.display = "inline-block";
-    btnText.textContent = "Confirmar en Google Sheets";
-  }
 }
 
 function showFeedback(msg, type) {
   formFeedback.className = `form-feedback ${type}`;
   formFeedback.innerHTML = `<i class="fa-solid fa-${type === 'success' ? 'circle-check' : 'circle-exclamation'}"></i> ${msg}`;
 }
-
-// Intentar actualizar la base de datos de invitados en vivo desde el Google Sheet público
-async function fetchLiveSheetGuests() {
-  const sheetQueryUrl = "https://docs.google.com/spreadsheets/d/1d3uSHlVQtv1E1HeQTXANpKzpuDNG13Qb6c7rRu8lYZE/gviz/tq?tqx=out:json";
-  try {
-    const response = await fetch(sheetQueryUrl);
-    const text = await response.text();
-    // Google gviz devuelve formato /*O_o*/\ngoogle.visualization.Query.setResponse({...});
-    const jsonStr = text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1);
-    const json = JSON.parse(jsonStr);
-    
-    if (json && json.table && json.table.rows) {
-      const liveList = [];
-      // Las filas de invitados inician en el índice 2 (fila 4 de Google Sheets)
-      for (let i = 2; i < json.table.rows.length; i++) {
-        const row = json.table.rows[i].c;
-        if (!row || !row[1] || !row[2]) continue;
-
-        const nro = row[1] ? row[1].v : (i - 1);
-        const titular = row[2] ? row[2].v : "";
-        const acompanantes = row[3] ? row[3].v : "-";
-        const pases = row[4] ? parseInt(row[4].v, 10) : 1;
-        const telefono = row[5] ? row[5].v : "";
-        const estado = row[6] ? row[6].v : "Pendiente";
-        const observaciones = row[7] ? row[7].v : "";
-
-        if (titular) {
-          liveList.push({
-            nro: nro,
-            titular: titular,
-            acompanantes: acompanantes,
-            pases: pases,
-            telefono: telefono,
-            estado: estado,
-            familia: observaciones
-          });
-        }
-      }
-
-      if (liveList.length > 0) {
-        guestsDatabase = liveList;
-        console.log(`Lista de invitados sincronizada en vivo con Google Sheets (${liveList.length} invitados).`);
-      }
-    }
-  } catch (err) {
-    console.log("Usando base de datos local de respaldo de Google Sheets.");
-  }
-}
-
-fetchLiveSheetGuests();

@@ -38,11 +38,6 @@
     <span class="music-label">Música</span>
   </div>
 
-  <!-- Botón de Configuración Rápida para la Hoja de Google Sheets -->
-  <button class="admin-gear-btn" id="open-config-btn" title="Configurar Enlace a Google Sheets">
-    <i class="fa-solid fa-gear"></i>
-  </button>
-
   <!-- ========================================== -->
   <!-- PANTALLA 1: FROTA LA LÁMPARA MÁGICA       -->
   <!-- ========================================== -->
@@ -233,7 +228,7 @@
               <!-- 1. RSVP / Confirmar Asistencia -->
               <div class="action-btn-item" data-modal="modal-rsvp">
                 <div class="gold-coin-btn rsvp-highlight">
-                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <i class="fa-brands fa-whatsapp"></i>
                 </div>
                 <span class="coin-label">Confirmar Asistencia</span>
               </div>
@@ -288,24 +283,26 @@
   <!-- MODALES INTERACTIVOS                      -->
   <!-- ========================================== -->
 
-  <!-- MODAL 1: CONFIRMAR ASISTENCIA (CONECTADO A GOOGLE SHEETS) -->
+  <!-- MODAL 1: CONFIRMAR ASISTENCIA (POR WHATSAPP DIRECTO) -->
   <div class="modal-overlay" id="modal-rsvp">
     <div class="modal-card">
       <button class="modal-close-btn">&times;</button>
       
       <div class="modal-header">
-        <i class="fa-solid fa-scroll modal-header-icon"></i>
+        <div class="whatsapp-badge-icon">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
         <h2 class="modal-title">Confirmar Asistencia</h2>
         <p class="modal-desc">
-          Por favor confirma tu presencia para preparar tu lugar y pases asignados en esta noche especial.
+          Confirma tu presencia enviando tus datos directamente por WhatsApp al <strong>+58 424-6159401</strong>.
         </p>
       </div>
 
       <form id="rsvp-form" class="modal-form">
-        <!-- Buscador / Selector Inteligente de Invitados de la Hoja -->
+        <!-- Buscador / Selector Inteligente de Invitados -->
         <div class="form-group">
           <label for="rsvp-search">
-            <i class="fa-solid fa-magnifying-glass"></i> Busca tu nombre en la lista de invitados:
+            <i class="fa-solid fa-magnifying-glass"></i> Busca tu nombre en la lista:
           </label>
           <div class="search-input-wrap">
             <input type="text" id="rsvp-search" placeholder="Escribe tu nombre o familia (ej. Tulio, Francis...)" autocomplete="off">
@@ -313,11 +310,8 @@
           </div>
           <!-- Lista desplegable de coincidencias -->
           <div class="autocomplete-list" id="autocomplete-list"></div>
-          <small class="helper-text">Si no apareces en la lista, puedes llenar tus datos manualmente abajo.</small>
+          <small class="helper-text">Si no estás en la lista, puedes llenar tus datos manualmente abajo.</small>
         </div>
-
-        <!-- Campo Oculto con el Nº de la fila si aplica -->
-        <input type="hidden" id="rsvp-nro" value="">
 
         <!-- Nombre del Titular -->
         <div class="form-group">
@@ -347,12 +341,12 @@
           </div>
         </div>
 
-        <!-- Teléfono / WhatsApp -->
+        <!-- Teléfono de contacto -->
         <div class="form-group">
           <label for="rsvp-telefono">
-            <i class="fa-brands fa-whatsapp"></i> Teléfono o WhatsApp de contacto:
+            <i class="fa-solid fa-phone"></i> Teléfono de contacto (opcional):
           </label>
-          <input type="tel" id="rsvp-telefono" placeholder="Ej: +58 412 1234567">
+          <input type="tel" id="rsvp-telefono" placeholder="Ej: 0412 1234567">
         </div>
 
         <!-- Estado de Asistencia (Confirmado o No Asiste) -->
@@ -377,26 +371,19 @@
         <!-- Observaciones / Dedicatoria -->
         <div class="form-group">
           <label for="rsvp-observaciones">
-            <i class="fa-solid fa-comment-heart"></i> Mensaje para Yaisrelis o notas especiales:
+            <i class="fa-solid fa-heart"></i> Mensaje para Yaisrelis o notas especiales:
           </label>
-          <textarea id="rsvp-observaciones" rows="2" placeholder="Dedicatoria, alergias alimentarias o mensaje..."></textarea>
+          <textarea id="rsvp-observaciones" rows="2" placeholder="Dedicatoria o mensaje especial..."></textarea>
         </div>
 
         <!-- Mensajes de Estado -->
         <div class="form-feedback" id="form-feedback"></div>
 
-        <!-- Botones de Envío -->
-        <div class="modal-buttons">
-          <button type="submit" class="submit-btn" id="submit-rsvp-btn">
-            <span class="btn-spinner" id="btn-spinner"></span>
-            <i class="fa-solid fa-paper-plane" id="btn-icon"></i>
-            <span id="btn-text">Confirmar en Google Sheets</span>
-          </button>
-          
-          <button type="button" class="whatsapp-btn" id="rsvp-whatsapp-btn">
-            <i class="fa-brands fa-whatsapp"></i> Confirmar también por WhatsApp
-          </button>
-        </div>
+        <!-- Botón Único Principal de Confirmación por WhatsApp -->
+        <button type="submit" class="whatsapp-submit-btn" id="submit-whatsapp-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Enviar Confirmación por WhatsApp</span>
+        </button>
       </form>
     </div>
   </div>
@@ -431,7 +418,7 @@
     </div>
   </div>
 
-  <!-- MODAL 3: CÓDIGO DE VESTIMENTA -->
+  <!-- MODAL 3: CÓDIGO DE VESTIMENTA (CON ILUSTRACIONES ESTILO ALADDÍN) -->
   <div class="modal-overlay" id="modal-dresscode">
     <div class="modal-card">
       <button class="modal-close-btn">&times;</button>
@@ -446,18 +433,33 @@
         <div class="dresscode-explanation">
           <p>
             La celebración se llevará a cabo en un ambiente al aire libre junto a la piscina.
-            Te invitamos a lucir un <strong>estilo cóctel elegante pero fresco y cómodo</strong>.
+            Te invitamos a lucir un <strong>estilo cóctel elegante, fresco y con inspiración de ensueño</strong>.
           </p>
-          <div class="dresscode-tips">
-            <div class="tip-card">
-              <i class="fa-solid fa-person-dress tip-icon"></i>
-              <h4>Damas</h4>
-              <p>Vestidos cóctel (cortos o midi), telas ligeras y calzado cómodo para el área de jardín/piscina.</p>
+          
+          <!-- Galería Visual de Vestimenta Tipo Aladdín / Noches de Arabia -->
+          <div class="aladdin-fashion-grid">
+            <!-- Traje Dama -->
+            <div class="fashion-card">
+              <div class="fashion-img-wrap">
+                <img src="assets/img/dress_aladdin.svg" alt="Vestido Cóctel Dama estilo Aladdín">
+              </div>
+              <div class="fashion-info">
+                <h4>Damas</h4>
+                <span class="fashion-sub">Estilo Princesa Jazmín</span>
+                <p>Vestidos cóctel (cortos o midi) en telas vaporosas (gasa, seda), tonos turquesa, esmeralda o dorado. Calzado cómodo para el área de piscina/jardín.</p>
+              </div>
             </div>
-            <div class="tip-card">
-              <i class="fa-solid fa-user-tie tip-icon"></i>
-              <h4>Caballeros</h4>
-              <p>Pantalón de vestir o lino, camisa manga larga o corta fresca, calzado casual elegante.</p>
+
+            <!-- Traje Caballero -->
+            <div class="fashion-card">
+              <div class="fashion-img-wrap">
+                <img src="assets/img/menswear_aladdin.svg" alt="Ropa Cóctel Caballero estilo Aladdín">
+              </div>
+              <div class="fashion-info">
+                <h4>Caballeros</h4>
+                <span class="fashion-sub">Estilo Príncipe Alí</span>
+                <p>Pantalón de lino o vestir, camisa cuello mao o tradicional fresca, chaleco o blazer casual elegante en tonos arena, azul noche, turquesa o blanco.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -465,11 +467,11 @@
         <div class="color-palette-wrap">
           <span class="palette-title">Colores sugeridos inspirados en las Noches de Arabia:</span>
           <div class="color-palette">
-            <div class="color-circle" style="background: #008080;" title="Turquesa / Teal"></div>
-            <div class="color-circle" style="background: #d4af37;" title="Dorado Imperial"></div>
-            <div class="color-circle" style="background: #0a3b4a;" title="Azul Noche"></div>
-            <div class="color-circle" style="background: #046307;" title="Esmeralda"></div>
-            <div class="color-circle" style="background: #e0d5b7;" title="Arena Suave"></div>
+            <div class="color-circle" style="background: #00f2fe;" title="Turquesa Mágico"></div>
+            <div class="color-circle" style="background: #dfb248;" title="Dorado Imperial"></div>
+            <div class="color-circle" style="background: #053c4d;" title="Azul Noche"></div>
+            <div class="color-circle" style="background: #0b6623;" title="Verde Esmeralda"></div>
+            <div class="color-circle" style="background: #f5efe1;" title="Arena Suave / Marfil"></div>
           </div>
         </div>
       </div>
@@ -554,37 +556,6 @@
             <p>Durante la noche el Genio concederá una sorpresa inolvidable para todos los presentes.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL 6: CONFIGURACIÓN GOOGLE APPS SCRIPT (PARA ORGANIZADORES) -->
-  <div class="modal-overlay" id="modal-config">
-    <div class="modal-card">
-      <button class="modal-close-btn">&times;</button>
-      
-      <div class="modal-header">
-        <i class="fa-solid fa-table modal-header-icon"></i>
-        <h2 class="modal-title">Conexión a Google Sheets</h2>
-        <p class="modal-desc">Enlace directo a tu hoja de cálculo para registrar confirmaciones en tiempo real.</p>
-      </div>
-
-      <div class="modal-body-content">
-        <div class="form-group">
-          <label for="script-url-input"><strong>URL de tu Aplicación Web de Google Apps Script:</strong></label>
-          <input type="url" id="script-url-input" placeholder="https://script.google.com/macros/s/.../exec">
-          <small class="helper-text">
-            Sigue los pasos en <code>INSTRUCCIONES_GOOGLE_SHEETS.md</code> para implementar el script en tu hoja.
-          </small>
-        </div>
-
-        <div class="config-status-box" id="config-status">
-          <p><strong>Hoja conectada:</strong> <a href="https://docs.google.com/spreadsheets/d/1d3uSHlVQtv1E1HeQTXANpKzpuDNG13Qb6c7rRu8lYZE/edit" target="_blank">Lista de Invitados - Mis XV Años</a></p>
-        </div>
-
-        <button class="submit-btn" id="save-config-btn">
-          <i class="fa-solid fa-floppy-disk"></i> Guardar Enlace
-        </button>
       </div>
     </div>
   </div>
