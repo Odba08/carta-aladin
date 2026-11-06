@@ -3,32 +3,16 @@
  * CÓDIGO DE GOOGLE APPS SCRIPT PARA LA INVITACIÓN DE 15 AÑOS DE YAISRELIS ISABELLA
  * Hoja vinculada: https://docs.google.com/spreadsheets/d/1d3uSHlVQtv1E1HeQTXANpKzpuDNG13Qb6c7rRu8lYZE/edit
  * ==============================================================================
- * 
- * INSTRUCCIONES DE INSTALACIÓN (SÓLO TOMA 1 MINUTO):
- * 1. Abre tu hoja de Google Sheets.
- * 2. En el menú superior, haz clic en: Extensiones > Apps Script.
- * 3. Borra cualquier código que aparezca en el editor (como myFunction) y pega TODO este código.
- * 4. Haz clic en el ícono de Guardar (el disquete).
- * 5. Haz clic en el botón azul superior: "Implementar" (o "Deploy") > "Nueva implementación" (New deployment).
- * 6. En el engranaje "Seleccionar tipo", elige: "Aplicación web" (Web app).
- * 7. Configura estos campos:
- *    - Descripción: "RSVP 15 Años Yaisrelis"
- *    - Ejecutar como: "Yo" (tu cuenta de Google)
- *    - Quién tiene acceso: "Cualquier persona" (Anyone) -> ¡MUY IMPORTANTE para que los invitados puedan confirmar!
- * 8. Haz clic en "Implementar" (Deploy). Acepta los permisos de tu cuenta de Google.
- * 9. Copia la "URL de la aplicación web" (termina en /exec) y pégala en la invitación web o configúrala.
- * ==============================================================================
  */
 
 const SHEET_ID = "1d3uSHlVQtv1E1HeQTXANpKzpuDNG13Qb6c7rRu8lYZE";
+const SHEET_TAB_NAME = "Invitados XV"; // Nombre exacto de tu pestaña
 
 function doGet(e) {
-  // Manejo de peticiones GET (para pruebas o lectura de datos)
   if (e && e.parameter && e.parameter.action === "ping") {
     return respondJSON({ status: "ok", message: "Servicio Apps Script activo y listo." });
   }
   
-  // Si envían datos por GET (fallback para evitar restricciones CORS en algunos navegadores)
   if (e && e.parameter && (e.parameter.titular || e.parameter.action === "rsvp")) {
     return procesarConfirmacion(e.parameter);
   }
@@ -64,7 +48,7 @@ function doPost(e) {
 
 function procesarConfirmacion(data) {
   const ss = SpreadsheetApp.openById(SHEET_ID);
-  const sheet = ss.getSheets()[0]; // Primera hoja
+  const sheet = ss.getSheetByName(SHEET_TAB_NAME) || ss.getSheets()[0];
   
   const titular = (data.titular || "").trim();
   const nro = data.nro ? parseInt(data.nro, 10) : null;
@@ -85,10 +69,11 @@ function procesarConfirmacion(data) {
   let foundRow = -1;
   let maxNro = 0;
 
-  // Recorrer filas existentes (los datos inician a partir de la fila 4)
-  if (lastRow >= 4) {
-    const rangeData = sheet.getRange(4, 2, lastRow - 3, 7).getValues();
-    // Columnas del rango (1 a 7 relativas):
+  // En tu hoja los datos inician en la fila 8 (Fila 7 es el encabezado Nº, Titular...)
+  const startRow = 8;
+
+  if (lastRow >= startRow) {
+    const rangeData = sheet.getRange(startRow, 2, lastRow - startRow + 1, 7).getValues();
     // Col 0: Nº (Columna B)
     // Col 1: Invitado / Titular (Columna C)
     // Col 2: Acompañantes / Familia (Columna D)
@@ -105,15 +90,15 @@ function procesarConfirmacion(data) {
 
       const rowTitular = (rangeData[i][1] || "").toString().trim().toLowerCase();
       
-      // Coincidencia por Nº si se envió
+      // Coincidencia por Nº si fue enviado
       if (nro && rowNro === nro) {
-        foundRow = 4 + i;
+        foundRow = startRow + i;
         break;
       }
 
-      // Coincidencia por Nombre del Titular (insensible a mayúsculas y acentos aproximados)
+      // Coincidencia por Nombre del Titular
       if (rowTitular && normalizarTexto(rowTitular) === normalizarTexto(titular.toLowerCase())) {
-        foundRow = 4 + i;
+        foundRow = startRow + i;
         break;
       }
     }
@@ -121,34 +106,33 @@ function procesarConfirmacion(data) {
 
   if (foundRow > 0) {
     // ACTUALIZAR INVITADO EXISTENTE
-    // Columna F: Teléfono (si vino vacío en la hoja o si el invitado aportó uno nuevo)
+    // Columna F (Columna 6): Teléfono
     if (telefono) {
       sheet.getRange(foundRow, 6).setValue(telefono);
     }
-    // Columna G: Estado ("Confirmado" o "No asiste")
+    // Columna G (Columna 7): Estado ("Confirmado" o "No asiste")
     sheet.getRange(foundRow, 7).setValue(estado);
 
-    // Columna H: Observaciones (conservar existentes si hay, y agregar la nota)
+    // Columna H (Columna 8): Observaciones
     if (observaciones) {
       const currentObs = sheet.getRange(foundRow, 8).getValue();
       const nuevaObs = currentObs ? (currentObs + " | " + observaciones) : observaciones;
       sheet.getRange(foundRow, 8).setValue(nuevaObs);
     }
 
-    // Si confirmaron pases y difiere o no tenía, se puede ajustar o conservar
     return respondJSON({
       status: "success",
       action: "updated",
       row: foundRow,
       titular: titular,
       estado: estado,
-      message: `¡Gracias ${titular}! Tu respuesta (${estado}) ha sido registrada con éxito.`
+      message: `¡Gracias ${titular}! Tu respuesta (${estado}) ha sido registrada con éxito en tu fila de la lista.`
     });
 
   } else {
     // AGREGAR NUEVO INVITADO AL FINAL DE LA LISTA
     const nextNro = maxNro + 1;
-    const newRowIndex = Math.max(lastRow + 1, 4);
+    const newRowIndex = Math.max(lastRow + 1, startRow);
 
     sheet.getRange(newRowIndex, 2).setValue(nextNro);             // Col B: Nº
     sheet.getRange(newRowIndex, 3).setValue(titular);             // Col C: Invitado / Titular
