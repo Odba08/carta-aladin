@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a8"/>
+      <stop offset="25%" stop-color="#e5b851"/>
+      <stop offset="50%" stop-color="#c89635"/>
+      <stop offset="75%" stop-color="#fdf0cd"/>
+      <stop offset="100%" stop-color="#7a5513"/>
+    </linearGradient>
+    <linearGradient id="goldGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8c6418"/>
+      <stop offset="40%" stop-color="#e6bf65"/>
+      <stop offset="70%" stop-color="#ffd978"/>
+      <stop offset="100%" stop-color="#a6771a"/>
+    </linearGradient>
+    <linearGradient id="turquoiseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#72f6ff"/>
+      <stop offset="40%" stop-color="#00c4cc"/>
+      <stop offset="80%" stop-color="#007a82"/>
+      <stop offset="100%" stop-color="#00383b"/>
+    </linearGradient>
+    <radialGradient id="gemGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#72f6ff" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#00d2d3" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#007a82" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lampAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd700" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#00e5ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Aura behind lamp -->
+  <ellipse cx="300" cy="220" rx="260" ry="140" fill="url(#lampAura)" />
+
+  <g filter="url(#softShadow)">
+    <!-- Base Pedestal -->
+    <ellipse cx="300" cy="335" rx="85" ry="18" fill="url(#goldGrad1)" stroke="#593b05" stroke-width="2"/>
+    <path d="M225,335 C240,310 270,300 275,290 L325,290 C330,300 360,310 375,335 Z" fill="url(#goldGrad2)" stroke="#593b05" stroke-width="2"/>
+    <ellipse cx="300" cy="290" rx="28" ry="7" fill="url(#goldGrad1)" stroke="#593b05" stroke-width="1.5"/>
+
+    <!-- Pedestal Rings & Filigree -->
+    <path d="M255,325 Q300,335 345,325" fill="none" stroke="#fff4b8" stroke-width="2" opacity="0.8"/>
+    <circle cx="280" cy="328" r="3" fill="#00e5ff" />
+    <circle cx="300" cy="330" r="3.5" fill="#00e5ff" />
+    <circle cx="320" cy="328" r="3" fill="#00e5ff" />
+
+    <!-- Main Lamp Belly Body -->
+    <!-- Belly curves from base (275,290) out to sides, then narrowing towards spout (left) and handle (right) -->
+    <path d="M275,290 
+             C210,285 160,250 140,210 
+             C120,170 120,130 90,110 
+             C75,100 50,95 40,95 
+             C35,95 30,105 45,115 
+             C85,140 100,185 140,225
+             C175,260 215,275 275,275 
+             L325,275 
+             C385,275 425,245 440,205 
+             C450,180 435,160 380,165 
+             C325,170 290,175 270,175 
+             C255,175 240,165 240,155 
+             C240,145 260,140 300,140 
+             C345,140 380,145 420,160 
+             C440,168 455,180 460,200 
+             C470,240 420,285 325,290 Z" 
+          fill="url(#goldGrad1)" stroke="#5c3f08" stroke-width="2.5" />
+
+    <!-- Upper Body Contour & Polish -->
+    <path d="M140,210 C180,255 240,270 300,270 C360,270 415,245 435,210 C390,230 330,240 280,240 C210,240 165,225 140,210 Z" 
+          fill="url(#goldGrad2)" opacity="0.6"/>
+
+    <!-- Lamp Spout (Long curving neck to the left) -->
+    <path d="M40,95 C30,95 25,100 25,106 C25,114 45,118 65,118 C110,118 135,165 170,200 L160,210 C125,170 95,125 50,118 C38,116 32,112 32,106 C32,102 36,99 42,98 Z" 
+          fill="url(#goldGrad1)" stroke="#5c3f08" stroke-width="1.5"/>
+
+    <!-- Spout Opening (where genie smoke emerges!) -->
+    <ellipse cx="32" cy="103" rx="10" ry="6" transform="rotate(-25 32 103)" fill="#2a1a02" stroke="url(#goldGrad1)" stroke-width="2.5"/>
+    <ellipse cx="32" cy="103" rx="7" ry="3.5" transform="rotate(-25 32 103)" fill="#00e5ff" opacity="0.8" filter="url(#goldGlow)"/>
+
+    <!-- Lamp Ornate Handle (Curling to the right) -->
+    <path d="M430,195 
+             C475,185 530,195 550,240 
+             C565,275 540,310 500,320 
+             C470,327 445,310 440,290 
+             C435,275 445,260 460,260 
+             C472,260 480,270 478,280 
+             C475,295 490,305 510,298 
+             C530,290 540,265 528,240 
+             C515,210 475,205 435,212 Z" 
+          fill="url(#goldGrad1)" stroke="#5c3f08" stroke-width="2.5"/>
+
+    <!-- Handle Acanthus / Leaf embellishment -->
+    <path d="M540,230 C560,220 575,205 570,195 C565,185 550,190 535,210 Z" fill="url(#goldGrad2)" stroke="#5c3f08" stroke-width="1.5"/>
+
+    <!-- Lamp Lid / Dome Top -->
+    <path d="M260,145 C260,125 280,105 300,105 C320,105 340,125 340,145 Z" fill="url(#goldGrad2)" stroke="#5c3f08" stroke-width="2"/>
+    <ellipse cx="300" cy="145" rx="42" ry="10" fill="url(#goldGrad1)" stroke="#5c3f08" stroke-width="2"/>
+    
+    <!-- Lid Finial / Spire -->
+    <path d="M296,105 L296,85 C290,85 288,80 295,75 C298,70 300,60 300,55 C300,60 302,70 305,75 C312,80 310,85 304,85 L304,105 Z" 
+          fill="url(#goldGrad1)" stroke="#5c3f08" stroke-width="1.5"/>
+    <circle cx="300" cy="53" r="5" fill="#72f6ff" stroke="#c89635" stroke-width="1" filter="url(#goldGlow)"/>
+
+    <!-- Arabesque Engravings on Lamp Belly -->
+    <g opacity="0.85">
+      <!-- Central Oval Medallion Frame -->
+      <ellipse cx="300" cy="225" rx="36" ry="24" fill="#1b1202" stroke="url(#goldGrad1)" stroke-width="3"/>
+      <!-- Glowing Turquoise Jewel in Center -->
+      <ellipse cx="300" cy="225" rx="30" ry="19" fill="url(#turquoiseGrad)"/>
+      <ellipse cx="300" cy="225" rx="34" ry="22" fill="url(#gemGlow)"/>
+      <!-- Jewel Facet Highlights -->
+      <polygon points="300,210 320,225 300,240 280,225" fill="none" stroke="#affbff" stroke-width="1.5" opacity="0.75"/>
+      <ellipse cx="293" cy="219" rx="8" ry="4" transform="rotate(-20 293 219)" fill="#ffffff" opacity="0.6"/>
+
+      <!-- Ornate scrolls flanking the jewel -->
+      <path d="M260,225 C230,220 205,200 180,210 C190,225 220,240 262,233" fill="none" stroke="url(#goldGrad1)" stroke-width="2"/>
+      <path d="M340,225 C370,220 395,200 420,210 C410,225 380,240 338,233" fill="none" stroke="url(#goldGrad1)" stroke-width="2"/>
+      
+      <circle cx="215" cy="216" r="3" fill="#00e5ff" stroke="#5c3f08" stroke-width="1"/>
+      <circle cx="385" cy="216" r="3" fill="#00e5ff" stroke="#5c3f08" stroke-width="1"/>
+      
+      <!-- Upper rim bead pearls -->
+      <circle cx="265" cy="155" r="2.5" fill="#ffeaa7"/>
+      <circle cx="280" cy="157" r="2.5" fill="#ffeaa7"/>
+      <circle cx="295" cy="158" r="2.5" fill="#ffeaa7"/>
+      <circle cx="310" cy="158" r="2.5" fill="#ffeaa7"/>
+      <circle cx="325" cy="157" r="2.5" fill="#ffeaa7"/>
+      <circle cx="340" cy="155" r="2.5" fill="#ffeaa7"/>
+    </g>
+
+    <!-- Highlights & Shine effects -->
+    <path d="M170,220 C220,250 280,255 330,253" fill="none" stroke="#fff9d6" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <path d="M60,110 C90,120 120,150 145,185" fill="none" stroke="#fff9d6" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

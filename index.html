@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>XV Años de Yaisrelis Isabella | Invitación Mágica</title>
+  
+  <!-- Meta tags para compartir en WhatsApp y Redes Sociales -->
+  <meta property="og:title" content="¡Estás invitado a mis 15 Años! - Yaisrelis Isabella">
+  <meta property="og:description" content="Un nuevo mundo está a punto de comenzar... Acompáñame este 14 de Noviembre en Los Bohíos de Carlos a las 9:30 PM.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#02141a">
+
+  <!-- Google Fonts: Caligrafía real y estilo árabe elegante -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600;700&family=Alex+Brush&family=Scheherazade+New:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Estilos Principales -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Audio de Fondo (Aladdín Instrumental: A Whole New World) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/aladdin-theme.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Botón Flotante de Audio (Control de Música) -->
+  <div class="music-pill" id="music-btn" title="Activar / Desactivar Música">
+    <div class="music-bars" id="music-bars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <i class="fa-solid fa-volume-high" id="music-icon"></i>
+    <span class="music-label">Música</span>
+  </div>
+
+  <!-- Botón de Configuración Rápida para la Hoja de Google Sheets -->
+  <button class="admin-gear-btn" id="open-config-btn" title="Configurar Enlace a Google Sheets">
+    <i class="fa-solid fa-gear"></i>
+  </button>
+
+  <!-- ========================================== -->
+  <!-- PANTALLA 1: FROTA LA LÁMPARA MÁGICA       -->
+  <!-- ========================================== -->
+  <section id="lamp-scene" class="scene active">
+    <!-- Canvas de Estrellas del Cielo Nocturno -->
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Fondo de Dunas y Palacio de Agrabah -->
+    <div class="palace-backdrop">
+      <img src="assets/img/palace.svg" alt="Palacio Mágico" class="palace-img">
+    </div>
+
+    <div class="lamp-container">
+      <div class="lamp-header">
+        <span class="lamp-sparkle-tag">✦ UN NUEVO MUNDO TE ESPERA ✦</span>
+        <h1 class="lamp-title">FROTA LA LÁMPARA</h1>
+        <p class="lamp-subtitle">Mueve tu dedo o el ratón de un lado a otro sobre la lámpara mágica para pedir tu deseo y entrar</p>
+      </div>
+
+      <!-- Zona Interactiva de la Lámpara -->
+      <div class="lamp-interactive-box" id="lamp-box">
+        <!-- Canvas de partículas mágicas y humo del genio -->
+        <canvas id="smoke-canvas"></canvas>
+        
+        <!-- Imagen de la Lámpara Maravillosa con Gema Turquesa -->
+        <div class="lamp-glow-aura" id="lamp-aura"></div>
+        <img src="assets/img/lamp.svg" alt="Lámpara Mágica de Aladdín" class="magic-lamp-svg" id="magic-lamp" draggable="false">
+
+        <!-- Indicador de Mano interactiva que guía al usuario -->
+        <div class="rub-guide" id="rub-guide">
+          <i class="fa-solid fa-hand-sparkles"></i>
+          <span>¡Frota aquí!</span>
+        </div>
+      </div>
+
+      <!-- Barra de Progreso de Deseo -->
+      <div class="progress-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-fill" id="rub-fill"></div>
+        </div>
+        <div class="progress-text" id="rub-text">Poder del Genio: 0%</div>
+      </div>
+
+      <!-- Botón alternativo de acceso directo -->
+      <button class="skip-btn" id="skip-rub-btn">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Tocar para abrir la invitación
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- TRANSICIÓN: VUELO DE LA ALFOMBRA MÁGICA   -->
+  <!-- ========================================== -->
+  <section id="carpet-transition" class="scene">
+    <div class="carpet-fly-wrapper">
+      <div class="carpet-smoke-trail"></div>
+      <img src="assets/img/carpet.svg" alt="Alfombra Mágica" class="magic-carpet-fly">
+      <h2 class="carpet-text">"Un mundo ideal nos espera..."</h2>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- PANTALLA 2: INVITACIÓN PRINCIPAL          -->
+  <!-- ========================================== -->
+  <section id="invitation-scene" class="scene">
+    <!-- Canvas de brillo y estrellas flotantes -->
+    <canvas id="invitation-stars-canvas"></canvas>
+
+    <div class="invitation-scroll-wrapper">
+      <!-- Marco Arquitectónico de Palacio Árabe -->
+      <div class="palace-frame">
+        
+        <!-- Linternas Colgantes Laterales con Vela Cálida -->
+        <div class="lantern-side left">
+          <img src="assets/img/lantern.svg" alt="Linterna de Palacio">
+        </div>
+        <div class="lantern-side right">
+          <img src="assets/img/lantern.svg" alt="Linterna de Palacio">
+        </div>
+
+        <div class="invitation-inner-content">
+          
+          <!-- Encabezado Real -->
+          <div class="royal-badge">
+            <span class="gold-diamond">◆</span>
+            <span class="badge-text">MIS QUINCE AÑOS</span>
+            <span class="gold-diamond">◆</span>
+          </div>
+
+          <!-- Nombre de la Quinceañera -->
+          <h1 class="quince-name">
+            <span class="name-first">Yaisrelis Isabella</span>
+            <span class="name-last">VÁZQUEZ HERNÁNDEZ</span>
+          </h1>
+
+          <div class="arabesque-divider">
+            <span class="divider-line"></span>
+            <span class="divider-symbol">⚜</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <!-- Texto Emotivo Inspirado en Aladdín -->
+          <div class="poetic-message">
+            <p class="verse">
+              "Un nuevo mundo está a punto de comenzar y el Genio concedió mi mayor deseo: 
+              <strong>¡celebrar mis 15 años!</strong>"
+            </p>
+            <p class="verse-sub">
+              Quiero que seas parte de esta noche mágica e inolvidable donde las alfombras mágicas nos llevarán a una velada llena de encanto.
+            </p>
+          </div>
+
+          <!-- Tarjetas de Información del Evento -->
+          <div class="event-details-card">
+            
+            <div class="detail-row">
+              <div class="detail-icon">
+                <i class="fa-solid fa-calendar-day"></i>
+              </div>
+              <div class="detail-text">
+                <span class="detail-title">FECHA</span>
+                <span class="detail-value highlight">Sábado, 14 de Noviembre</span>
+                <span class="detail-sub">Una noche bajo las estrellas</span>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-icon">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="detail-text">
+                <span class="detail-title">HORA</span>
+                <span class="detail-value highlight">9:30 PM</span>
+                <span class="detail-sub">Recepción y entrada mágica</span>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="detail-text">
+                <span class="detail-title">LUGAR</span>
+                <span class="detail-value highlight">"Los Bohíos de Carlos"</span>
+                <span class="detail-sub">Avenida 49B con Calle 178, Maracaibo, Zulia</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Contador Regresivo en Vivo -->
+          <div class="countdown-section">
+            <h3 class="countdown-title">✦ CUENTA REGRESIVA PARA LA MAGIA ✦</h3>
+            <div class="countdown-grid" id="countdown-grid">
+              <div class="time-box">
+                <span class="time-num" id="cd-days">00</span>
+                <span class="time-label">DÍAS</span>
+              </div>
+              <div class="time-sep">:</div>
+              <div class="time-box">
+                <span class="time-num" id="cd-hours">00</span>
+                <span class="time-label">HORAS</span>
+              </div>
+              <div class="time-sep">:</div>
+              <div class="time-box">
+                <span class="time-num" id="cd-minutes">00</span>
+                <span class="time-label">MINUTOS</span>
+              </div>
+              <div class="time-sep">:</div>
+              <div class="time-box">
+                <span class="time-num" id="cd-seconds">00</span>
+                <span class="time-label">SEGUNDOS</span>
+              </div>
+            </div>
+
+            <!-- Botón Agregar a Calendario -->
+            <button class="calendar-btn" id="add-to-calendar-btn">
+              <i class="fa-solid fa-calendar-plus"></i> Guardar en mi Calendario
+            </button>
+          </div>
+
+          <!-- Barra de Acciones Interactivas (5 Botones estilo Aladdín) -->
+          <div class="action-buttons-section">
+            <p class="actions-prompt">HAZ CLIC EN LOS ICONOS PARA INTERACTUAR</p>
+            
+            <div class="action-buttons-grid">
+              
+              <!-- 1. RSVP / Confirmar Asistencia -->
+              <div class="action-btn-item" data-modal="modal-rsvp">
+                <div class="gold-coin-btn rsvp-highlight">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <span class="coin-label">Confirmar Asistencia</span>
+              </div>
+
+              <!-- 2. Ubicación / Mapa -->
+              <div class="action-btn-item" data-modal="modal-location">
+                <div class="gold-coin-btn">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <span class="coin-label">Cómo Llegar</span>
+              </div>
+
+              <!-- 3. Código de Vestimenta -->
+              <div class="action-btn-item" data-modal="modal-dresscode">
+                <div class="gold-coin-btn">
+                  <i class="fa-solid fa-vest-patches"></i>
+                </div>
+                <span class="coin-label">Vestimenta Cóctel</span>
+              </div>
+
+              <!-- 4. Lluvia de Sobres / Regalos -->
+              <div class="action-btn-item" data-modal="modal-gifts">
+                <div class="gold-coin-btn">
+                  <i class="fa-solid fa-gift"></i>
+                </div>
+                <span class="coin-label">Sugerencia Regalos</span>
+              </div>
+
+              <!-- 5. Manual del Invitado -->
+              <div class="action-btn-item" data-modal="modal-rules">
+                <div class="gold-coin-btn">
+                  <i class="fa-solid fa-scroll"></i>
+                </div>
+                <span class="coin-label">Manual Invitado</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Mensaje Final -->
+          <div class="invitation-footer">
+            <p class="final-wish">"Tu presencia hará que esta noche sea aún más mágica"</p>
+            <p class="signature">Yaisrelis Isabella</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- MODALES INTERACTIVOS                      -->
+  <!-- ========================================== -->
+
+  <!-- MODAL 1: CONFIRMAR ASISTENCIA (CONECTADO A GOOGLE SHEETS) -->
+  <div class="modal-overlay" id="modal-rsvp">
+    <div class="modal-card">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <i class="fa-solid fa-scroll modal-header-icon"></i>
+        <h2 class="modal-title">Confirmar Asistencia</h2>
+        <p class="modal-desc">
+          Por favor confirma tu presencia para preparar tu lugar y pases asignados en esta noche especial.
+        </p>
+      </div>
+
+      <form id="rsvp-form" class="modal-form">
+        <!-- Buscador / Selector Inteligente de Invitados de la Hoja -->
+        <div class="form-group">
+          <label for="rsvp-search">
+            <i class="fa-solid fa-magnifying-glass"></i> Busca tu nombre en la lista de invitados:
+          </label>
+          <div class="search-input-wrap">
+            <input type="text" id="rsvp-search" placeholder="Escribe tu nombre o familia (ej. Tulio, Francis...)" autocomplete="off">
+            <span class="clear-search-btn" id="clear-search">&times;</span>
+          </div>
+          <!-- Lista desplegable de coincidencias -->
+          <div class="autocomplete-list" id="autocomplete-list"></div>
+          <small class="helper-text">Si no apareces en la lista, puedes llenar tus datos manualmente abajo.</small>
+        </div>
+
+        <!-- Campo Oculto con el Nº de la fila si aplica -->
+        <input type="hidden" id="rsvp-nro" value="">
+
+        <!-- Nombre del Titular -->
+        <div class="form-group">
+          <label for="rsvp-titular">
+            <i class="fa-solid fa-user"></i> Nombre Completo / Titular: *
+          </label>
+          <input type="text" id="rsvp-titular" required placeholder="Nombre y Apellido">
+        </div>
+
+        <!-- Acompañantes / Familia -->
+        <div class="form-group">
+          <label for="rsvp-acompanantes">
+            <i class="fa-solid fa-users"></i> Acompañantes / Familia:
+          </label>
+          <input type="text" id="rsvp-acompanantes" placeholder="Nombres de tus acompañantes">
+        </div>
+
+        <!-- Cantidad de Pases -->
+        <div class="form-group">
+          <label for="rsvp-pases">
+            <i class="fa-solid fa-ticket"></i> Pases Asignados:
+          </label>
+          <div class="passes-counter">
+            <button type="button" class="counter-btn" id="btn-minus-pass">-</button>
+            <input type="number" id="rsvp-pases" min="1" max="10" value="1" readonly>
+            <button type="button" class="counter-btn" id="btn-plus-pass">+</button>
+          </div>
+        </div>
+
+        <!-- Teléfono / WhatsApp -->
+        <div class="form-group">
+          <label for="rsvp-telefono">
+            <i class="fa-brands fa-whatsapp"></i> Teléfono o WhatsApp de contacto:
+          </label>
+          <input type="tel" id="rsvp-telefono" placeholder="Ej: +58 412 1234567">
+        </div>
+
+        <!-- Estado de Asistencia (Confirmado o No Asiste) -->
+        <div class="form-group">
+          <label><i class="fa-solid fa-circle-question"></i> ¿Podrás acompañarme? *</label>
+          <div class="attendance-options">
+            <label class="radio-option">
+              <input type="radio" name="attendance_status" value="Confirmado" checked>
+              <span class="radio-custom green">
+                <i class="fa-solid fa-circle-check"></i> ¡Sí, asistiré con alegría!
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attendance_status" value="No asiste">
+              <span class="radio-custom red">
+                <i class="fa-solid fa-circle-xmark"></i> Lo siento, no podré asistir
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Observaciones / Dedicatoria -->
+        <div class="form-group">
+          <label for="rsvp-observaciones">
+            <i class="fa-solid fa-comment-heart"></i> Mensaje para Yaisrelis o notas especiales:
+          </label>
+          <textarea id="rsvp-observaciones" rows="2" placeholder="Dedicatoria, alergias alimentarias o mensaje..."></textarea>
+        </div>
+
+        <!-- Mensajes de Estado -->
+        <div class="form-feedback" id="form-feedback"></div>
+
+        <!-- Botones de Envío -->
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn" id="submit-rsvp-btn">
+            <span class="btn-spinner" id="btn-spinner"></span>
+            <i class="fa-solid fa-paper-plane" id="btn-icon"></i>
+            <span id="btn-text">Confirmar en Google Sheets</span>
+          </button>
+          
+          <button type="button" class="whatsapp-btn" id="rsvp-whatsapp-btn">
+            <i class="fa-brands fa-whatsapp"></i> Confirmar también por WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: UBICACIÓN Y CÓMO LLEGAR -->
+  <div class="modal-overlay" id="modal-location">
+    <div class="modal-card">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <i class="fa-solid fa-location-dot modal-header-icon"></i>
+        <h2 class="modal-title">Lugar del Evento</h2>
+        <p class="modal-place-name">"Los Bohíos de Carlos"</p>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="address-box">
+          <p><strong>Dirección:</strong></p>
+          <p class="address-text">Avenida 49B con Calle 178, Maracaibo, Zulia</p>
+          <p class="address-hint"><i class="fa-solid fa-water-ladder"></i> Espacio al aire libre con piscina y áreas sociales.</p>
+        </div>
+
+        <div class="map-actions">
+          <a href="https://maps.app.goo.gl/bQdekMyDzhuEg7BK7?g_st=atm" target="_blank" rel="noopener noreferrer" class="map-link-btn google-maps">
+            <i class="fa-solid fa-map-location-dot"></i> Abrir en Google Maps
+          </a>
+          <a href="https://waze.com/ul?ll=10.5521034,-71.6605945&navigate=yes" target="_blank" rel="noopener noreferrer" class="map-link-btn waze">
+            <i class="fa-brands fa-waze"></i> Abrir en Waze
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: CÓDIGO DE VESTIMENTA -->
+  <div class="modal-overlay" id="modal-dresscode">
+    <div class="modal-card">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <i class="fa-solid fa-vest-patches modal-header-icon"></i>
+        <h2 class="modal-title">Código de Vestimenta</h2>
+        <p class="dresscode-badge">ESTILO CÓCTEL (ÁREA DE PISCINA)</p>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="dresscode-explanation">
+          <p>
+            La celebración se llevará a cabo en un ambiente al aire libre junto a la piscina.
+            Te invitamos a lucir un <strong>estilo cóctel elegante pero fresco y cómodo</strong>.
+          </p>
+          <div class="dresscode-tips">
+            <div class="tip-card">
+              <i class="fa-solid fa-person-dress tip-icon"></i>
+              <h4>Damas</h4>
+              <p>Vestidos cóctel (cortos o midi), telas ligeras y calzado cómodo para el área de jardín/piscina.</p>
+            </div>
+            <div class="tip-card">
+              <i class="fa-solid fa-user-tie tip-icon"></i>
+              <h4>Caballeros</h4>
+              <p>Pantalón de vestir o lino, camisa manga larga o corta fresca, calzado casual elegante.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="color-palette-wrap">
+          <span class="palette-title">Colores sugeridos inspirados en las Noches de Arabia:</span>
+          <div class="color-palette">
+            <div class="color-circle" style="background: #008080;" title="Turquesa / Teal"></div>
+            <div class="color-circle" style="background: #d4af37;" title="Dorado Imperial"></div>
+            <div class="color-circle" style="background: #0a3b4a;" title="Azul Noche"></div>
+            <div class="color-circle" style="background: #046307;" title="Esmeralda"></div>
+            <div class="color-circle" style="background: #e0d5b7;" title="Arena Suave"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: SUGERENCIA DE REGALOS -->
+  <div class="modal-overlay" id="modal-gifts">
+    <div class="modal-card">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <i class="fa-solid fa-gift modal-header-icon"></i>
+        <h2 class="modal-title">Sugerencia de Regalos</h2>
+        <p class="dresscode-badge">LLUVIA DE SOBRES</p>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="gifts-message">
+          <p class="gift-quote">
+            "Tu presencia es mi mayor deseo y el mejor regalo que puedo recibir en mis 15 años."
+          </p>
+          <div class="gift-box-illustration">
+            <i class="fa-solid fa-envelope-circle-check"></i>
+          </div>
+          <p>
+            Si deseas hacerme un presente, dispondremos de un <strong>Cofre Mágico de Deseos (Lluvia de Sobres)</strong> en la entrada del salón.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 5: MANUAL DEL INVITADO -->
+  <div class="modal-overlay" id="modal-rules">
+    <div class="modal-card">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <i class="fa-solid fa-book-open-reader modal-header-icon"></i>
+        <h2 class="modal-title">Manual del Invitado</h2>
+        <p class="modal-desc">Ayúdanos a hacer de esta noche una experiencia mágica e inolvidable para todos.</p>
+      </div>
+
+      <div class="modal-body-content rules-list">
+        <div class="rule-item">
+          <div class="rule-badge">1</div>
+          <div class="rule-text">
+            <strong>Confirma tu asistencia con anticipación:</strong>
+            <p>Nos permite coordinar los puestos y pases de tu familia.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-badge">2</div>
+          <div class="rule-text">
+            <strong>Puntualidad Mágica:</strong>
+            <p>La recepción comienza a las 9:30 PM. ¡Llega a tiempo para la gran entrada de Yaisrelis!</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-badge">3</div>
+          <div class="rule-text">
+            <strong>Cuida a los fotógrafos:</strong>
+            <p>Permite que capturen los momentos clave de la noche.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-badge">4</div>
+          <div class="rule-text">
+            <strong>¡Ven listo para divertirte!</strong>
+            <p>Baila, disfruta de la música y celebra junto a la Quinceañera.</p>
+          </div>
+        </div>
+
+        <div class="rule-surprise-box">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <div>
+            <strong>¡Sorpresa Especial!</strong>
+            <p>Durante la noche el Genio concederá una sorpresa inolvidable para todos los presentes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 6: CONFIGURACIÓN GOOGLE APPS SCRIPT (PARA ORGANIZADORES) -->
+  <div class="modal-overlay" id="modal-config">
+    <div class="modal-card">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div class="modal-header">
+        <i class="fa-solid fa-table modal-header-icon"></i>
+        <h2 class="modal-title">Conexión a Google Sheets</h2>
+        <p class="modal-desc">Enlace directo a tu hoja de cálculo para registrar confirmaciones en tiempo real.</p>
+      </div>
+
+      <div class="modal-body-content">
+        <div class="form-group">
+          <label for="script-url-input"><strong>URL de tu Aplicación Web de Google Apps Script:</strong></label>
+          <input type="url" id="script-url-input" placeholder="https://script.google.com/macros/s/.../exec">
+          <small class="helper-text">
+            Sigue los pasos en <code>INSTRUCCIONES_GOOGLE_SHEETS.md</code> para implementar el script en tu hoja.
+          </small>
+        </div>
+
+        <div class="config-status-box" id="config-status">
+          <p><strong>Hoja conectada:</strong> <a href="https://docs.google.com/spreadsheets/d/1d3uSHlVQtv1E1HeQTXANpKzpuDNG13Qb6c7rRu8lYZE/edit" target="_blank">Lista de Invitados - Mis XV Años</a></p>
+        </div>
+
+        <button class="submit-btn" id="save-config-btn">
+          <i class="fa-solid fa-floppy-disk"></i> Guardar Enlace
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

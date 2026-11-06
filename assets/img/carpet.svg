@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="carpetRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#99152b"/>
+      <stop offset="50%" stop-color="#c41c3b"/>
+      <stop offset="100%" stop-color="#7a0a1e"/>
+    </linearGradient>
+    <linearGradient id="carpetTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00a896"/>
+      <stop offset="100%" stop-color="#028090"/>
+    </linearGradient>
+    <linearGradient id="tasselGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeaa7"/>
+      <stop offset="60%" stop-color="#e5b851"/>
+      <stop offset="100%" stop-color="#8c6418"/>
+    </linearGradient>
+    <filter id="carpetShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="12" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#carpetShadow)">
+    <!-- Undulating Magic Carpet Body in 3D Perspective Wave -->
+    <path d="M60,190 
+             C120,230 220,180 300,210 
+             C380,240 430,190 460,170 
+             C440,120 390,70 330,80 
+             C240,60 160,110 90,80 
+             C50,110 40,150 60,190 Z" 
+          fill="url(#carpetRed)" stroke="url(#tasselGold)" stroke-width="4"/>
+
+    <!-- Outer Gold Border -->
+    <path d="M75,180 
+             C130,215 220,172 295,200 
+             C370,225 415,180 440,162 
+             C425,122 380,82 325,92 
+             C245,75 170,115 105,92 
+             C70,118 60,148 75,180 Z" 
+          fill="url(#carpetTeal)" stroke="url(#tasselGold)" stroke-width="2.5"/>
+
+    <!-- Inner Red Field -->
+    <path d="M95,168 
+             C145,198 220,162 288,188 
+             C355,210 395,172 418,155 
+             C405,125 368,95 320,104 
+             C250,90 185,122 125,105 
+             C95,124 85,145 95,168 Z" 
+          fill="url(#carpetRed)"/>
+
+    <!-- Center Diamond Medallion -->
+    <polygon points="260,145 285,165 260,185 235,165" fill="url(#carpetTeal)" stroke="url(#tasselGold)" stroke-width="2"/>
+    <circle cx="260" cy="165" r="7" fill="url(#tasselGold)"/>
+
+    <!-- Flanking Arabesque Diamonds -->
+    <polygon points="175,140 190,152 175,165 160,152" fill="url(#tasselGold)"/>
+    <polygon points="345,152 360,165 345,178 330,165" fill="url(#tasselGold)"/>
+
+    <!-- Corner Gold Tassels / Fringes with motion -->
+    <!-- Front Left Corner -->
+    <path d="M60,190 C50,210 40,230 35,245" stroke="url(#tasselGold)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="35" cy="245" r="4.5" fill="url(#tasselGold)"/>
+    
+    <!-- Front Right Corner -->
+    <path d="M460,170 C475,190 488,210 495,225" stroke="url(#tasselGold)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="495" cy="225" r="4.5" fill="url(#tasselGold)"/>
+
+    <!-- Back Left Corner -->
+    <path d="M90,80 C80,65 72,50 68,40" stroke="url(#tasselGold)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="68" cy="40" r="3.5" fill="url(#tasselGold)"/>
+
+    <!-- Back Right Corner -->
+    <path d="M330,80 C340,65 350,52 356,42" stroke="url(#tasselGold)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="356" cy="42" r="3.5" fill="url(#tasselGold)"/>
+  </g>
+</svg>

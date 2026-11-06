@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="lanternGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a8"/>
+      <stop offset="35%" stop-color="#e5b851"/>
+      <stop offset="70%" stop-color="#c89635"/>
+      <stop offset="100%" stop-color="#694508"/>
+    </linearGradient>
+    <radialGradient id="candleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#ffe682"/>
+      <stop offset="60%" stop-color="#ff9900" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff7700" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Hanging Chain -->
+  <line x1="80" y1="0" x2="80" y2="45" stroke="url(#lanternGold)" stroke-width="2.5" stroke-dasharray="4,2"/>
+  <circle cx="80" cy="45" r="5" fill="none" stroke="url(#lanternGold)" stroke-width="2.5"/>
+
+  <!-- Lantern Dome Cap -->
+  <path d="M60,80 C60,60 70,52 80,52 C90,52 100,60 100,80 Z" fill="url(#lanternGold)" stroke="#4a3004" stroke-width="1.5"/>
+  <rect x="52" y="80" width="56" height="10" rx="3" fill="url(#lanternGold)" stroke="#4a3004" stroke-width="1.5"/>
+
+  <!-- Lantern Glass Body Glow -->
+  <ellipse cx="80" cy="145" rx="45" ry="55" fill="url(#candleGlow)"/>
+
+  <!-- Glass Panes / Frame -->
+  <path d="M52,90 L40,165 L56,220 L104,220 L120,165 L108,90 Z" fill="#ffb433" fill-opacity="0.25" stroke="url(#lanternGold)" stroke-width="3"/>
+
+  <!-- Inner Candle & Flame -->
+  <rect x="74" y="150" width="12" height="35" rx="2" fill="#fffdf0"/>
+  <path d="M80,132 C76,140 76,145 80,149 C84,145 84,140 80,132 Z" fill="#ffe066" filter="drop-shadow(0 0 8px #ffaa00)"/>
+
+  <!-- Moroccan Filigree Lattice Overlay on Glass -->
+  <path d="M52,90 L104,220 M108,90 L56,220 M40,165 L120,165 M80,90 L80,220" stroke="url(#lanternGold)" stroke-width="1.8" opacity="0.85"/>
+
+  <!-- Lantern Bottom Base -->
+  <polygon points="56,220 104,220 94,235 66,235" fill="url(#lanternGold)" stroke="#4a3004" stroke-width="1.5"/>
+  <polygon points="66,235 94,235 80,255" fill="url(#lanternGold)" stroke="#4a3004" stroke-width="1.5"/>
+  <!-- Bottom Finial Drop -->
+  <circle cx="80" cy="260" r="4" fill="url(#lanternGold)"/>
+</svg>
