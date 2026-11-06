@@ -50,7 +50,28 @@ const guestsDatabase = [
   { nro: 41, titular: "Yadira", acompanantes: "-", pases: 1, familia: "" },
   { nro: 42, titular: "Jean Carlos Villasmil", acompanantes: "María Soto", pases: 2, familia: "Familia Villasmil / Soto" },
   { nro: 44, titular: "Familia Bastidas", acompanantes: "-", pases: 1, familia: "Familia Bastidas" },
-  { nro: 45, titular: "Señor Jeffrey", acompanantes: "Yajari, Ale", pases: 3, familia: "" }
+  { nro: 45, titular: "Señor Jeffrey", acompanantes: "Yajari, Ale", pases: 3, familia: "" },
+  // AMIGOS DE LA QUINCEAÑERA
+  { nro: 46, titular: "Beatriz Rojas", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 47, titular: "Isabel Díaz", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 48, titular: "Paula Moreno", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 49, titular: "Johana Moyeda", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 50, titular: "Elvis Meléndez", acompanantes: "Honorimar Gómez", pases: 2, familia: "Amigos" },
+  { nro: 51, titular: "Jair Conde", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 52, titular: "Santiago Maldonado", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 53, titular: "Abraham Zapata", acompanantes: "Marisol", pases: 2, familia: "Amigos" },
+  { nro: 54, titular: "Emiliano Pérez", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 55, titular: "Marbelis Más y Rubí", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 56, titular: "Luis López", acompanantes: "Andrea Briceño", pases: 2, familia: "Amigos" },
+  { nro: 57, titular: "Elizabeth López", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 58, titular: "Melida Acosta", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 59, titular: "Alexandra", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 60, titular: "Yermis Ferrebus", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 61, titular: "Sofía Matheus", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 62, titular: "Rusma", acompanantes: "Arpidio", pases: 2, familia: "Amigos" },
+  { nro: 63, titular: "Aranza Zabala", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 64, titular: "Señora Ana Pereira", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 65, titular: "Gabriel Hernández", acompanantes: "-", pases: 1, familia: "Amigos" }
 ];
 
 // ==============================================================================
