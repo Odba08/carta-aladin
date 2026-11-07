@@ -40,7 +40,7 @@ const guestsDatabase = [
   { nro: 30, titular: "Carmen Calixtro", acompanantes: "Merce Rojas", pases: 2, familia: "Familia Rojas / Calixtro" },
   { nro: 31, titular: "Mery Rojas", acompanantes: "Exnnery Vázquez", pases: 2, familia: "Familia Rojas / Vázquez" },
   { nro: 32, titular: "Manuel Polo", acompanantes: "Yuliany", pases: 2, familia: "Familia Polo" },
-  { nro: 33, titular: "Eduardo Pineda", acompanantes: "-", pases: 1, familia: "Familia Pineda" },
+  { nro: 33, titular: "Eduardo Pineda", acompanantes: "Rosa Rincón", pases: 2, familia: "Familia Pineda / Rincón" },
   { nro: 34, titular: "Edelmira Caicedo", acompanantes: "Camila, Luisana", pases: 3, familia: "Familia Caicedo" },
   { nro: 35, titular: "Sove Navarro", acompanantes: "-", pases: 1, familia: "Familia Navarro" },
   { nro: 37, titular: "Escarlet Andrade", acompanantes: "-", pases: 1, familia: "Familia Andrade" },
@@ -51,6 +51,13 @@ const guestsDatabase = [
   { nro: 42, titular: "Jean Carlos Villasmil", acompanantes: "María Soto", pases: 2, familia: "Familia Villasmil / Soto" },
   { nro: 44, titular: "Familia Bastidas", acompanantes: "-", pases: 1, familia: "Familia Bastidas" },
   { nro: 45, titular: "Señor Jeffrey", acompanantes: "Yajari, Ale", pases: 3, familia: "" },
+  // FAMILIA ANDRADE, VÁZQUEZ Y RINCÓN
+  { nro: 66, titular: "Rosa Rincón", acompanantes: "Eduardo Pineda", pases: 2, familia: "Familia Rincón / Pineda" },
+  { nro: 67, titular: "Zara Andrade", acompanantes: "-", pases: 1, familia: "Familia Andrade" },
+  { nro: 68, titular: "Jesús Andrade", acompanantes: "-", pases: 1, familia: "Familia Andrade" },
+  { nro: 69, titular: "Juan Andrade", acompanantes: "-", pases: 1, familia: "Familia Andrade" },
+  { nro: 70, titular: "Rossymar Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez" },
+  { nro: 71, titular: "Robert Vázquez", acompanantes: "-", pases: 1, familia: "Familia Vázquez" },
   // AMIGOS DE LA QUINCEAÑERA
   { nro: 46, titular: "Beatriz Rojas", acompanantes: "-", pases: 1, familia: "Amigos" },
   { nro: 47, titular: "Isabel Díaz", acompanantes: "-", pases: 1, familia: "Amigos" },
@@ -71,7 +78,13 @@ const guestsDatabase = [
   { nro: 62, titular: "Rusma", acompanantes: "Arpidio", pases: 2, familia: "Amigos" },
   { nro: 63, titular: "Aranza Zabala", acompanantes: "-", pases: 1, familia: "Amigos" },
   { nro: 64, titular: "Señora Ana Pereira", acompanantes: "-", pases: 1, familia: "Amigos" },
-  { nro: 65, titular: "Gabriel Hernández", acompanantes: "-", pases: 1, familia: "Amigos" }
+  { nro: 65, titular: "Gabriel Hernández", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 72, titular: "Yohendry Duno", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 73, titular: "Fernando Ríos", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 74, titular: "Daniel Antúnez", acompanantes: "-", pases: 1, familia: "Amigos" },
+  { nro: 75, titular: "Mariangela", acompanantes: "Danni", pases: 2, familia: "Amigos" },
+  { nro: 76, titular: "Danni", acompanantes: "Mariangela", pases: 2, familia: "Amigos" },
+  { nro: 77, titular: "Ronelida Pineda", acompanantes: "-", pases: 1, familia: "Amigos" }
 ];
 
 // ==============================================================================
@@ -468,7 +481,7 @@ const addToCalendarBtn = document.getElementById("add-to-calendar-btn");
 if (addToCalendarBtn) {
   addToCalendarBtn.addEventListener("click", () => {
     const title = encodeURIComponent("15 Años de Yaisrelis Isabella Vázquez Hernández");
-    const details = encodeURIComponent("¡Noche mágica de 15 Años! Celebración en Los Bohíos de Carlos. Recepción a las 9:30 PM. Código de vestimenta: Cóctel para área de piscina.");
+    const details = encodeURIComponent("¡Noche mágica de 15 Años! Celebración en Los Bohíos de Carlos. Recepción a las 9:30 PM. Código de vestimenta: Tipo Cóctel.");
     const location = encodeURIComponent("Los Bohíos de Carlos, Avenida 49B con Calle 178, Maracaibo, Zulia");
     const dates = "20261115T013000Z/20261115T080000Z";
 

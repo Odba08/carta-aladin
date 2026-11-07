@@ -15,7 +15,7 @@ Invitación web interactiva para los 15 años de **Yaisrelis Isabella Vázquez H
 - **5 Botones de Acción**:
   1. ✍️ **Confirmar Asistencia (RSVP)**: Autocompletado de la lista oficial de 41 invitados con asignación de pases y envío directo al WhatsApp oficial: **+58 424-6159401**.
   2. 📍 **Cómo Llegar**: Enlace directo a Google Maps y Waze.
-  3. 👗 **Código de Vestimenta**: Estilo Cóctel (Área de piscina) con ilustraciones tipo Aladdín (Vestido Princesa Jazmín para damas y traje Príncipe Alí para caballeros).
+  3. 👗 **Código de Vestimenta**: Vestimenta Tipo Cóctel elegante y formal para damas y caballeros.
   4. 🎁 **Sugerencia de Regalos**: Lluvia de Sobres / Cofre de Deseos.
   5. 📜 **Manual del Invitado**: Normas de oro, puntualidad y sorpresas.
 - **Confirmación Directa por WhatsApp**: Mensaje estructurado con nombre, pases asignados, acompañantes y dedicatoria enviado directamente al WhatsApp del organizador.
